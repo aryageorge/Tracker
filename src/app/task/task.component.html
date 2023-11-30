@@ -1,0 +1,28 @@
+<div>
+    <h2>Task List</h2>
+  
+    <ul>
+      <li *ngFor="let task of tasks; let i = index">
+        {{ task.title }} - {{ task.description }}
+        <button (click)="editTask(i)">Edit</button>
+        <button (click)="deleteTask(i)">Delete</button>
+      </li>
+    </ul>
+  
+    <h2>Add/Update Task</h2>
+  
+    <form *ngIf="editingIndex === -1; else editForm">
+      <label>Title: <input [(ngModel)]="newTask.title" /></label>
+      <label>Description: <input [(ngModel)]="newTask.description" /></label>
+      <button (click)="addTask()">Add Task</button>
+    </form>
+  
+    <ng-template #editForm>
+      <form>
+        <label>Title: <input [(ngModel)]="newTask.title" /></label>
+        <label>Description: <input [(ngModel)]="newTask.description" /></label>
+        <button (click)="updateTask()">Update Task</button>
+        <button (click)="clearForm()">Cancel</button>
+      </form>
+    </ng-template>
+  </div>
